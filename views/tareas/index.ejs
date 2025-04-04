@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tareas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+  <h1>Tareas</h1>
+  <a href="/tareas/crear" class="btn btn-success mb-3">Nueva Tarea</a>
+  <a href="/usuarios" class="btn btn-primary mb-3">Usuarios</a>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Completado</th>
+        <th>Fecha Límite</th>
+        <th>Usuario</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tareas.forEach(t => { %>
+        <tr>
+          <td><%= t.tar_titulo %></td>
+          <td><%= t.tar_descripcion %></td>
+          <td><%= t.tar_completado ? 'Sí' : 'No' %></td>
+          <td><%= t.tar_limite || 'N/A' %></td>
+          <td><%= t.usuario?.usu_nombre %></td>
+          <td>
+            <a href="/tareas/editar/<%= t.tar_id %>" class="btn btn-warning btn-sm">Editar</a>
+            <a href="/tareas/eliminar/<%= t.tar_id %>" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar tarea?')">Eliminar</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
