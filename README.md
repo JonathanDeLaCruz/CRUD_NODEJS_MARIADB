@@ -30,6 +30,10 @@ npm install --save-dev nodemon
 ```
 🧬 3. Crear base de datos y tablas en MariaDB
 ```sql
+CREATE DATABASASE nombre_base_datos;
+
+USE nombre_base_datos;
+
 CREATE TABLE usuario (
   usu_id INT AUTO_INCREMENT PRIMARY KEY,
   usu_nombre VARCHAR(50) NOT NULL,
