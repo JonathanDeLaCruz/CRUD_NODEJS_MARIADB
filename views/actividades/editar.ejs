@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Tarea</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+  <h1>Editar Actividad</h1>
+  <form method="POST" action="/actividades/editar/<%= actividad.act_id %>" enctype="multipart/form-data">
+    <input name="act_titulo" value="<%= actividad.act_titulo %>" class="form-control mb-2" required>
+    <textarea name="act_descripcion" class="form-control mb-2"><%= actividad.act_descripcion %></textarea>
+    <input type="date" name="act_realizo" value="<%= new Date(actividad.act_realizo).toISOString().slice(0,10) %>" class="form-control mb-2" required>
+
+    <label>Tarea asociada:</label>
+    <select name="act_fktarea" class="form-control mb-2" required>
+      <% tareas.forEach(t => { %>
+        <option value="<%= t.tar_id %>" <%= t.tar_id === actividad.act_fktarea ? 'selected' : '' %>><%= t.tar_titulo %></option>
+      <% }) %>
+    </select>
+
+    <label>Evidencia actual:</label><br>
+    <% if (actividad.act_evidencia) { %>
+      <img src="/uploads/<%= actividad.act_evidencia %>" width="100"><br>
+    <% } else { %>
+      No hay evidencia cargada<br>
+    <% } %>
+    <label>Actualizar evidencia (opcional):</label>
+    <input type="file" name="act_evidencia" accept="image/*" class="form-control mb-3">
+    
+    <button class="btn btn-warning">Actualizar</button>
+  </form>
+</body>
+</html>

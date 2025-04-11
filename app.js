@@ -6,6 +6,7 @@ const sequelize = require('./config/db');
 // Rutas
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const tareaRoutes = require('./routes/tareaRoutes');
+const actividadRoutes = require('./routes/actividadRoutes');
 
 // Configuración
 app.set('view engine', 'ejs');
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Usar rutas
 app.use('/usuarios', usuarioRoutes);
 app.use('/tareas', tareaRoutes);
+app.use('/actividades', actividadRoutes);
 
 // Ruta raíz opcional
 app.get('/', (req, res) => {
