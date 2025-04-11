@@ -62,3 +62,27 @@ O con nodemon si lo instalaste:
 ```js
 npx nodemon app.js
 ```
+
+✨ 6. Subir archivos
+
+- Agregar la nueva tabla de **Actividades**
+
+```sql
+CREATE TABLE actividad (
+  act_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  act_titulo varchar(150) NOT NULL,
+  act_descripcion text NOT NULL,
+  act_realizo date NOT NULL,
+  act_evidencia varchar(150) NOT NULL,
+  act_fktarea int(11) NOT NULL,
+  FOREIGN KEY (act_fktarea) REFERENCES tarea (tar_id)
+)
+```
+
+- Instalar dependencia para subir imágenes
+
+```ts
+npm install multer
+```
+
+- Es necesario tener creada la estructura de carpetas **public/uploads**
